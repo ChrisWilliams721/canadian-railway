@@ -3,7 +3,7 @@
 
 import "./globals.css";
 import { AuthContextProvider } from "./context/AuthContext";
-import NavBar from "./components/Navbar";
+import NavBar from "../components/Navbar";
 
 // Creating a metadata object that helps with SEO
 export const metadata = {

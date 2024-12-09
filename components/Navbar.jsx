@@ -1,12 +1,12 @@
 "use client";
 
 import Link from "next/link";
-import React from "react";
-import { useUserAuth } from "../context/AuthContext";
+import React, { useEffect, useState } from "react";
+import { useUserAuth } from "../app/context/AuthContext";
 
 const NavBar = () => {
   const { user, googleSignIn, firebaseSignOut } = useUserAuth();
-  console.log(user)
+  const [loading, setLoading] = useState(true);
 
   async function handleSignIn() {
     try {
@@ -22,6 +22,18 @@ const NavBar = () => {
     } catch (error) {
       console.log("Sign-out error:", error);
     }
+  }
+
+  useEffect(() => {
+    async function checkAuthentication() {
+      await new Promise((resolve) => setTimeout(resolve, 50));
+      setLoading(false);
+    }
+    checkAuthentication();
+  }, [user]);
+
+  if (loading) {
+    return <p>Loading...</p>;
   }
 
   return (
@@ -40,7 +52,12 @@ const NavBar = () => {
         </li>
       </ul>
 
-      {!user ? (
+      {user ? (
+        <div>
+          <p>Welcome {user.displayName}</p>
+          <p onClick={handleSignOut}>Sign Out</p>
+        </div>
+      ) : (
         <ul className="flex">
           <li onClick={handleSignIn} className="p-2 cursor-pointer inline-flex">
             Log In
@@ -49,11 +66,6 @@ const NavBar = () => {
             Sign In
           </li>
         </ul>
-      ) : (
-        <div>
-          <p>Welcome, {user.displayName}</p>
-          <p onClick={handleSignOut}>Sign Out</p>
-        </div>
       )}
     </div>
   );
