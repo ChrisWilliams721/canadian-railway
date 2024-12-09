@@ -1,30 +1,25 @@
-import React from "react";
-import localFont from "next/font/local";
+// Managing the layout of the app
+// { children }: A special prop that represents any child components nested inside <AuthContextProvider>
+
 import "./globals.css";
+import { AuthContextProvider } from "./context/AuthContext";
+import NavBar from "./components/Navbar";
 
-const geistSans = localFont({
-  src: "./fonts/GeistVF.woff",
-  variable: "--font-geist-sans",
-  weight: "100 900",
-});
-const geistMono = localFont({
-  src: "./fonts/GeistMonoVF.woff",
-  variable: "--font-geist-mono",
-  weight: "100 900",
-});
-
+// Creating a metadata object that helps with SEO
 export const metadata = {
   title: "Canadian Railway",
-  description: "Made by team 8",
+  description: "Made by Team 8",
 };
 
+// The main structure of the app
 export default function RootLayout({ children }) {
   return (
     <html lang="en">
-      <body
-        className={`${geistSans.variable} ${geistMono.variable} antialiased`}
-      >
-        <React.StrictMode>{children}</React.StrictMode>
+      <body>
+        <AuthContextProvider>
+          <NavBar />
+          {children}
+        </AuthContextProvider>
       </body>
     </html>
   );
