@@ -22,3 +22,22 @@ export const saveUser = async (user) => {
         console.error("Error saving user to Firestore:", error);
       }
 };
+export const deleteUser = async (user) => {
+    try {
+        await deleteDoc(doc(db, "users", user.uid));
+        console.log("User deleted from Firestore");
+      } catch (error) {
+        console.error("Error deleting user from Firestore:", error);
+      }
+}
+export const modifyUser = async (user) => {
+    try {
+        await updateDoc(doc(db, "users", user.uid), {
+          name: user.displayName || "Anonymous",
+          email: user.email,
+        });
+        console.log("User updated in Firestore");
+      } catch (error) {
+        console.error("Error updating user in Firestore:", error);
+      }
+}
