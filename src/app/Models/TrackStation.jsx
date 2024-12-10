@@ -1,10 +1,11 @@
 import WeatherStation from "./WeatherStation";
 export default class TrackStation {
-    constructor(trackId, trackName, trackLocation, trackStatus) {
+    constructor(trackId, trackName, trackLocation, trackStatus, trackDetails) {
         this.trackId = trackId; 
         this.trackName = trackName;
         this.trackLocation = trackLocation;
         this.trackStatus = trackStatus;
+        this.trackDetails = trackDetails;
     }
     // Methods
     getLocation() {
@@ -15,5 +16,8 @@ export default class TrackStation {
     }
     getClosestWeatherStation() {
         return WeatherStation.getClosestWeatherStation(this.trackLocation);
+    }
+    getTrackDetails() {
+        return this.trackDetails;
     }
 }

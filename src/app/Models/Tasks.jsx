@@ -29,4 +29,7 @@ export default class Tasks {
     deleteTask() {
         return this.getTaskInfo();
     }
+    getTaskHistory() {
+        return this.getTaskInfo();
+    }
 }
