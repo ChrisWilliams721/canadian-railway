@@ -14,7 +14,7 @@ export default function NavBar() {
 
   const provider = new GoogleAuthProvider();
 
-  const signInWithGoogle = async () => {
+  const signInWithGoogle = async () => { 
     try {
       const result = await signInWithPopup(auth, provider);
       const user = result.user;

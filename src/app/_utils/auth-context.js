@@ -2,6 +2,7 @@
 
 import { createContext, useContext, useEffect, useState } from 'react';
 import { onAuthStateChanged, signInWithPopup, GoogleAuthProvider, signOut } from 'firebase/auth';
+import { saveUserToFirestore } from '../_services/users-services';
 import { auth } from '../_utils/firebase';
 
 const AuthContext = createContext();
@@ -10,8 +11,10 @@ export function AuthProvider({ children }) {
   const [user, setUser] = useState(null);
 
   useEffect(() => {
-    const unsubscribe = onAuthStateChanged(auth, (user) => {
-      setUser(user);
+    const unsubscribe = onAuthStateChanged(auth, async (currentUser) => {
+      if (currentUser) {
+        await saveUserToFirestore(currentUser);
+      }
     });
     return () => unsubscribe();
   }, []);
