@@ -1,4 +1,4 @@
-import React from 'react'
+import React from "react";
 // import WeatherStation from '../Models/WeatherStation'
 // import CapacityChart from '../Components/CapacityChart'
 // import InteractiveMap from '../Components/InteractiveMap'
@@ -15,9 +15,7 @@ function Dashboard() {
       <TrackOverview />
       <AIChatbot /> */}
     </div>
-    
-    
-  )
+  );
 }
 
-export default Dashboard
+export default Dashboard;

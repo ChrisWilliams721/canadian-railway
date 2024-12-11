@@ -9,7 +9,7 @@ export const getAllUsers = async () => {
     const usersList = usersSnapshot.docs.map((doc) => doc.data());
     return usersList;
 };
-export const saveUser = async (user) => {
+export const saveUserToFirestore = async (user) => {
     try {
         await setDoc(doc(db, "users", user.uid), {
           uid: user.uid,

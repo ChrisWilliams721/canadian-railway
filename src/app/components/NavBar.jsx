@@ -6,6 +6,7 @@ import { auth } from "../_utils/firebase"; // Ensure you have a firebase config
 import { signOut } from "firebase/auth";    ``
 import { useRouter } from "next/navigation";
 import { signInWithPopup, GoogleAuthProvider } from "firebase/auth";
+import { saveUserToFirestore } from "../_services/users-services";
 
 export default function NavBar() {
   const { user, logOut, signIn } = useUserAuth();
