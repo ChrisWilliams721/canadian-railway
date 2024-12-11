@@ -53,7 +53,7 @@ export default function ManageUsers() {
         </thead>
         <tbody>
           {users.map((user) => (
-            <tr key={user.userId}>
+            <tr key={user.uid}>
               <td className="px-4 py-2 border">{user.userName}</td>
               <td className="px-4 py-2 border">{user.userEmail}</td>
               <td className="px-4 py-2 border">
